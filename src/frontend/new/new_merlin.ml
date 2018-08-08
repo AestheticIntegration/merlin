@@ -134,10 +134,8 @@ let run = function
         1
 
 let with_env env f =
-  let path = Unix.getenv "PATH" in
   Os_ipc.merlin_set_environ env;
   Unix.putenv "__MERLIN_MASTER_PID" (string_of_int (Unix.getpid ()));
-  Unix.putenv "PATH" path;
   let log = match Sys.getenv "MERLIN_LOG" with
     | value -> Some value
     | exception Not_found -> None
